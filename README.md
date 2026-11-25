@@ -28,9 +28,24 @@ python3 generate.py
 
 This writes `entry.png` (1024×1024) in the current directory. The output is deterministic: running the command twice produces a byte-identical file (no randomness, no timestamps).
 
+To reproduce the entry from this snapshot, run the entrypoint (Python standard library only — no third-party packages needed):
+
+```bash
+python3 main.py
+```
+
+This copies `entry.png` into the `out/` directory. A different output directory can be chosen with the `MAKEFUN_OUTPUT_DIR` environment variable:
+
+```bash
+MAKEFUN_OUTPUT_DIR=out python3 main.py
+```
+
+Either way the file written is byte-identical to the committed `entry.png`.
+
 ## Files
 
 - `generate.py` — the program that draws the front page
+- `main.py` — the entrypoint: copies `entry.png` into the output directory (`MAKEFUN_OUTPUT_DIR`, default `out/`)
 - `entry.png` — the generated front page (1024×1024)
 - `.makefun/owner.json` — entry owner wallet
 - `LICENSE` — MIT
